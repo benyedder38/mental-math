@@ -35,16 +35,16 @@ def generate_problem(operation):
     num2 = random.randint(1, 100)
 
     if operation == 'a':
-        question = f"{num1} + {num2}"
+        question = f"{num1} + {num2} = "
         answer = num1 + num2
     elif operation == 's':
-        question = f"{num1} - {num2}"
+        question = f"{num1} - {num2} = "
         answer = num1 - num2
     elif operation == 'm':
-        question = f"{num1} x {num2}"
+        question = f"{num1} x {num2} = "
         answer = num1 * num2
     elif operation == 'd':
-        question = f"{num1} / {num2}"
+        question = f"{num1} / {num2} = "
         answer = num1 // num2
 
     return question, answer
@@ -62,7 +62,7 @@ def question_prompt(question, answer, timeout):
 
     if player_answer is None:
         print("Times up!")
-        time.sleep(2)
+        time.sleep(1)
         return False
     else:
         return int(player_answer) == answer
@@ -80,7 +80,7 @@ def main():
         if question_prompt(curr_question, curr_answer, 5):
             score += 1
             print(f"Correct. Your score is currently {score}.")
-            time.sleep(2)
+            time.sleep(1)
         else:
             lives -= 1
             if lives == 0:
@@ -88,6 +88,6 @@ def main():
                 break
             else:
                 print(f"Wrong or times up. You have {lives} remaining. Your score is currently {score}.")
-            time.sleep(2)
+            time.sleep(1)
 if __name__ == "__main__":
     main()
