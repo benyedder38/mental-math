@@ -11,12 +11,22 @@ def print_game_intro():
 
 def print_help():
     print("========== [ HELP ] ==========")
+    print("""
+        a -> Addition questions
+        s -> Subtraction questions
+        m -> Multiplication questions
+        d -> Division questions
+
+        lives = 3, lost whenever timeout or incorrect answer is inputted
+    """)   
 
 def get_game_mode():
     while True:
         operation = input("Please choose a game mode [a, s, m, d] OR h for help: ").strip().lower()
-        if operation in ['a', 's', 'm', 'd', 'h']:
-            return operation
+        if operation in ['a', 's', 'm', 'd']:
+            return operation      
+        elif operation == 'h':
+            print_help()
         else:
             print("Invalid key, please try again")
 
