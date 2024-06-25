@@ -1,5 +1,7 @@
 # mental-math
 
+inspired by: https://www.youtube.com/watch?v=1JW9BA57aR8
+
 Terminal mental mathematics game.
 
 Modes: Addition (a), Subtraction (s), Multiplication (m), Division (d)
