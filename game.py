@@ -62,7 +62,7 @@ def question_prompt(question, answer, timeout):
 
     if player_answer is None:
         print("Times up!")
-        time.sleep(1)
+        #time.sleep(1)
         return False
     else:
         return int(player_answer) == answer
@@ -77,7 +77,7 @@ def main():
     while True:
         curr_question, curr_answer = generate_problem(operation)
         # if the question is answered within 5 seconds, increment score, else take a live
-        if question_prompt(curr_question, curr_answer, 5):
+        if question_prompt(curr_question, curr_answer, 10):
             score += 1
             print(f"Correct. Your score is currently {score}.")
             time.sleep(1)
@@ -86,8 +86,8 @@ def main():
             if lives == 0:
                 print(f"GAME OVER. Your score was {score}.")
                 break
-            else:
-                print(f"Wrong or times up. You have {lives} remaining. Your score is currently {score}.")
-            time.sleep(1)
+            #else:
+               # print(f"Wrong or times up. You have {lives} remaining. Your score is currently {score}.")
+            #time.sleep(1)
 if __name__ == "__main__":
     main()
