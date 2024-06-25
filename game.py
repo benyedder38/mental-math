@@ -17,7 +17,7 @@ def print_help():
         m -> Multiplication questions
         d -> Division questions
 
-        lives = 3, lost whenever timeout or incorrect answer is inputted
+        lives = 3, lost whenever timeout (COMING SOON) or incorrect answer is inputted
     """)   
 
 def get_game_mode():
@@ -44,6 +44,7 @@ def generate_problem(operation):
         question = f"{num1} x {num2} = "
         answer = num1 * num2
     elif operation == 'd':
+        num1 = num2 * random.randint(1, 10)
         question = f"{num1} / {num2} = "
         answer = num1 // num2
 
