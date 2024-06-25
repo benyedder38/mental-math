@@ -1,12 +1,13 @@
 import random
 import time
 import threading
+import sys
 
 class MentalMathGame:
     def __init__(self):
         self.score = 0
         self.lives = 3
-        self.timeout = 5
+        self.timeout = 10
 
     def print_game_intro(self):
         print("========= [ MENTAL MATHEMATICS ] ==========")
@@ -21,6 +22,7 @@ class MentalMathGame:
             a -> Addition questions
             s -> Subtraction questions
             m -> Multiplication questions
+            ms -> Squared questions
             d -> Division questions
 
             lives = 3, lost whenever timeout or incorrect answer is inputted
@@ -28,13 +30,13 @@ class MentalMathGame:
 
     def get_game_mode(self):
         while True:
-            operation = input("Please choose a game mode [a, s, m, d] OR h for help: ").strip().lower()
-            if operation in ['a', 's', 'm', 'd']:
+            operation = input("Please choose a game mode [a, s, m, ms, d] OR h for help: ").strip().lower()
+            if operation in ['a', 's', 'm', 'ms', 'd']:
                 return operation      
             elif operation == 'h':
                 self.print_help()
             else:
-                print("Invalid key, please try again")
+                print("Invalid key, please try again.")
 
     def generate_problem(self, operation):
         num1 = random.randint(1, 100)
@@ -49,21 +51,22 @@ class MentalMathGame:
         elif operation == 'm':
             question = f"{num1} x {num2} = "
             answer = num1 * num2
+        elif operation == 'ms':
+            question = f"{num1}^2 = "
+            answer = num1 * num1
         elif operation == 'd':
             num1 = num2 * random.randint(1, 10)
             question = f"{num1} / {num2} = "
             answer = num1 // num2
-
         return question, answer
 
     def question_prompt(self, question, answer):
-        player_answer = None
+        player_answer = [None]
 
         def get_player_input():
-            nonlocal player_answer
             while True:
                 try:
-                    player_answer = int(input(question))
+                    player_answer[0] = int(input(question))
                     break
                 except ValueError:
                     print("Please enter a valid integer.")
@@ -72,11 +75,11 @@ class MentalMathGame:
         input_thread.start()
         input_thread.join(self.timeout)
 
-        if player_answer is None:
+        if input_thread.is_alive():
             print("Times up!")
             return False
         else:
-            return player_answer == answer
+            return player_answer[0] == answer
 
     def play(self):
         self.print_game_intro()
@@ -89,13 +92,14 @@ class MentalMathGame:
             if self.question_prompt(curr_question, curr_answer):
                 self.score += 1
                 print(f"Correct. Your score is currently {self.score}.")
-                time.sleep(1)
             else:
                 self.lives -= 1
                 if self.lives == 0:
                     print(f"GAME OVER. Your score was {self.score}.")
+                    sys.exit()
                 else:
                     print(f"Wrong or times up. You have {self.lives} lives remaining. Your score is currently {self.score}.")
+            time.sleep(1)
 
 if __name__ == "__main__":
     game = MentalMathGame()
