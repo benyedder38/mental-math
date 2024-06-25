@@ -22,6 +22,7 @@ class MentalMathGame:
             a -> Addition questions
             s -> Subtraction questions
             m -> Multiplication questions
+            m11 -> Multiples of 11 questions
             ms -> Squared questions
             d -> Division questions
 
@@ -30,8 +31,8 @@ class MentalMathGame:
 
     def get_game_mode(self):
         while True:
-            operation = input("Please choose a game mode [a, s, m, ms, d] OR h for help: ").strip().lower()
-            if operation in ['a', 's', 'm', 'ms', 'd']:
+            operation = input("Please choose a game mode [a, s, m, m11, ms, d] OR h for help: ").strip().lower()
+            if operation in ['a', 's', 'm', 'm11' , 'ms', 'd']:
                 return operation      
             elif operation == 'h':
                 self.print_help()
@@ -51,6 +52,9 @@ class MentalMathGame:
         elif operation == 'm':
             question = f"{num1} x {num2} = "
             answer = num1 * num2
+        elif operation == 'm11':
+            question = f"{num1} x 11 = "
+            answer = num1 * 11
         elif operation == 'ms':
             question = f"{num1}^2 = "
             answer = num1 * num1
