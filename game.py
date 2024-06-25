@@ -7,7 +7,7 @@ class MentalMathGame:
     def __init__(self):
         self.score = 0
         self.lives = 3
-        self.timeout = 10
+        #self.timeout = 10
 
     def print_game_intro(self):
         print("========= [ MENTAL MATHEMATICS ] ==========")
@@ -64,22 +64,24 @@ class MentalMathGame:
         player_answer = [None]
 
         def get_player_input():
-            while True:
+            #while True:
                 try:
                     player_answer[0] = int(input(question))
-                    break
+                    #break
                 except ValueError:
                     print("Please enter a valid integer.")
 
-        input_thread = threading.Thread(target=get_player_input)
-        input_thread.start()
-        input_thread.join(self.timeout)
+        #input_thread = threading.Thread(target=get_player_input)
+        #input_thread.start()
+        #input_thread.join(self.timeout)
 
-        if input_thread.is_alive():
-            print("Times up!")
-            return False
-        else:
-            return player_answer[0] == answer
+        #if input_thread.is_alive():
+        #    print("Times up!")
+        #    return False
+        #else:
+        #    return player_answer[0] == answer
+        get_player_input()
+        return player_answer[0] == answer
 
     def play(self):
         self.print_game_intro()
@@ -99,7 +101,7 @@ class MentalMathGame:
                     sys.exit()
                 else:
                     print(f"Wrong or times up. You have {self.lives} lives remaining. Your score is currently {self.score}.")
-            time.sleep(1)
+            #time.sleep(1)
 
 if __name__ == "__main__":
     game = MentalMathGame()
