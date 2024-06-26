@@ -32,7 +32,7 @@ class MentalMathGame:
     def get_game_mode(self):
         while True:
             operation = input("Please choose a game mode [a, s, m, m11, ms, d] OR h for help: ").strip().lower()
-            if operation in ['a', 's', 'm', 'm11' , 'ms', 'd']:
+            if operation in ['a', 's', 'm', 'm11', 'm11h' , 'ms', 'd']:
                 return operation      
             elif operation == 'h':
                 self.print_help()
@@ -40,8 +40,12 @@ class MentalMathGame:
                 print("Invalid key, please try again.")
 
     def generate_problem(self, operation):
+        # 2-digit mode
         num1 = random.randint(1, 100)
         num2 = random.randint(1, 100)
+        # 3-digit mode
+        num3 = random.randint(1, 1000)
+        num4 = random.randint(1, 1000)
 
         if operation == 'a':
             question = f"{num1} + {num2} = "
@@ -55,6 +59,9 @@ class MentalMathGame:
         elif operation == 'm11':
             question = f"{num1} x 11 = "
             answer = num1 * 11
+        elif operation == 'm11h':
+            question = f"{num3} x 11 = "
+            answer = num3 * 11
         elif operation == 'ms':
             question = f"{num1}^2 = "
             answer = num1 * num1
