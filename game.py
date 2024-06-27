@@ -31,8 +31,8 @@ class MentalMathGame:
 
     def get_game_mode(self):
         while True:
-            operation = input("Please choose a game mode [a, s, m, m11, ms, d] OR h for help: ").strip().lower()
-            if operation in ['a', 's', 'm', 'm11', 'm11h' , 'ms', 'd']:
+            operation = input("Please choose a game mode [a, s, m, d, r] OR h for help: ").strip().lower()
+            if operation in ['r', 'a', 's', 'm', 'm11', 'm11h' , 'ms', 'd']:
                 return operation      
             elif operation == 'h':
                 self.print_help()
@@ -46,6 +46,12 @@ class MentalMathGame:
         # 3-digit mode
         num3 = random.randint(1, 1000)
         num4 = random.randint(1, 1000)
+
+        operations = ['a', 's', 'm', 'm11', 'm11h', 'ms', 'd']
+
+        # If operation is 'r', select a random operation
+        if operation == 'r':
+            operation = random.choice(operations)
 
         if operation == 'a':
             question = f"{num1} + {num2} = "
